@@ -1,0 +1,40 @@
+# ---- Python ----
+backend/venv/
+backend/__pycache__/
+**/__pycache__/
+*.pyc
+
+# ---- Playwright browsers (huge, install via setup) ----
+backend/pw-browsers/
+
+# ---- Datenbank (enthaelt Userdaten + API-Key, NIE committen) ----
+*.db
+backend/kleinanzeigen.db
+
+# ---- Node / Frontend build ----
+frontend/node_modules/
+frontend/dist/
+
+# ---- Build-Artefakte ----
+build/
+dist/
+*.spec
+KleinanzeigenAnalyzer-Portable/
+
+# ---- Secrets / lokale Configs ----
+.env
+*.env
+backend/.env
+
+# ---- Dev-/Debug-Kram ----
+backend/debug.png
+backend/debug_*.py
+
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---- Claude/Agent-Config (nicht Teil der App) ----
+.claude/

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2-Alternativen — Fintech Pop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; font-variant-numeric: tabular-nums;
+  background: #2b2b2b; display: flex; flex-direction: column; align-items: center; }
+section { width: 1180px; }
+.row { display: flex; gap: 14px; }
+.variant-label { width: 1180px; color: #fff; padding: 26px 8px 10px; font-size: 18px; font-weight: 800; }
+.variant-label small { font-weight: 500; opacity: 0.7; font-size: 13px; margin-left: 10px; }
+.deal-line { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.deal-meta { font-size: 12px; opacity: 0.75; margin-top: 6px; }
+.btn-row { display: flex; gap: 10px; margin-top: 16px; }
+
+/* shared fintech-pop skeleton */
+.fp { background: #F2F4FA; color: #0F172A; padding-bottom: 26px; }
+.fp .top { background: #fff; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; gap: 20px; padding: 14px 28px; }
+.fp .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
+.fp .logo .dot { width: 34px; height: 34px; border-radius: 10px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+.fp .tab { padding: 7px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; color: #64748B; }
+.fp .content { padding: 24px 28px 0; }
+.fp .hero { color: #fff; border-radius: 20px; padding: 22px 26px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.fp .hero h2 { font-size: 24px; font-weight: 800; }
+.fp .hero p { font-size: 13px; opacity: 0.88; margin-top: 4px; }
+.fp .hero .hbtn { background: #fff; border: none; padding: 11px 22px; border-radius: 12px; font-weight: 800; font-size: 13px; }
+.fp .stat { flex: 1; background: #fff; border-radius: 16px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(15,23,42,0.07); }
+.fp .stat .ic { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-bottom: 8px; }
+.fp .stat .lbl { font-size: 12px; color: #64748B; font-weight: 600; }
+.fp .stat .val { font-size: 26px; font-weight: 800; margin-top: 2px; }
+.fp .card { background: #fff; border-radius: 16px; padding: 16px 18px; margin-top: 14px; box-shadow: 0 1px 3px rgba(15,23,42,0.07); }
+.fp .pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+.fp .price { font-size: 22px; font-weight: 800; }
+.fp .btn2 { color: #fff; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; font-size: 13px; }
+.fp .bars { display: flex; align-items: flex-end; gap: 6px; height: 70px; margin-top: 10px; }
+.fp .bars i { flex: 1; border-radius: 6px 6px 0 0; }
+
+/* A — Original Indigo→Violett→Pink */
+.va .logo .dot { background: linear-gradient(135deg, #4F46E5, #9333EA); }
+.va .tab.on { background: #EEF2FF; color: #4F46E5; font-weight: 700; }
+.va .hero { background: linear-gradient(120deg, #4F46E5 0%, #7C3AED 60%, #DB2777 130%); }
+.va .hero .hbtn { color: #4F46E5; }
+.va .stat { border-top: 4px solid; }
+.va .b1 { border-color: #3B82F6; } .va .b1 .ic { background: #DBEAFE; color: #1D4ED8; }
+.va .b2 { border-color: #10B981; } .va .b2 .ic { background: #D1FAE5; color: #047857; }
+.va .b3 { border-color: #F59E0B; } .va .b3 .ic { background: #FEF3C7; color: #B45309; }
+.va .b4 { border-color: #F43F5E; } .va .b4 .ic { background: #FFE4E6; color: #BE123C; }
+.va .p-deal { background: #D1FAE5; color: #047857; } .va .p-score { background: #EEF2FF; color: #4F46E5; } .va .p-warn { background: #FEF3C7; color: #B45309; }
+.va .price { color: #10B981; }
+.va .btn2 { background: #4F46E5; }
+.va .bars i { background: #C7D2FE; } .va .bars i.hot { background: linear-gradient(180deg, #4F46E5, #7C3AED); }
+
+/* B — Ocean: Cyan→Blau, linke Borders */
+.vb { background: #F0F6FA; }
+.vb .logo .dot { background: linear-gradient(135deg, #0EA5E9, #2563EB); }
+.vb .tab.on { background: #E0F2FE; color: #0369A1; font-weight: 700; }
+.vb .hero { background: linear-gradient(115deg, #0C4A6E 0%, #0369A1 45%, #0EA5E9 110%); }
+.vb .hero .hbtn { color: #0369A1; }
+.vb .stat { border-left: 5px solid; border-radius: 12px 16px 16px 12px; }
+.vb .b1 { border-color: #0EA5E9; } .vb .b1 .ic { background: #E0F2FE; color: #0369A1; }
+.vb .b2 { border-color: #14B8A6; } .vb .b2 .ic { background: #CCFBF1; color: #0F766E; }
+.vb .b3 { border-color: #6366F1; } .vb .b3 .ic { background: #E0E7FF; color: #4338CA; }
+.vb .b4 { border-color: #F59E0B; } .vb .b4 .ic { background: #FEF3C7; color: #B45309; }
+.vb .p-deal { background: #CCFBF1; color: #0F766E; } .vb .p-score { background: #E0F2FE; color: #0369A1; } .vb .p-warn { background: #FEF3C7; color: #B45309; }
+.vb .price { color: #0D9488; }
+.vb .btn2 { background: #0284C7; }
+.vb .bars i { background: #BAE6FD; } .vb .bars i.hot { background: linear-gradient(180deg, #0EA5E9, #2563EB); }
+
+/* C — Sunset: Orange→Pink, getönte Karten */
+.vc { background: #FBF4EE; }
+.vc .logo .dot { background: linear-gradient(135deg, #F97316, #E11D48); }
+.vc .tab.on { background: #FFEDD5; color: #C2410C; font-weight: 700; }
+.vc .hero { background: linear-gradient(115deg, #C2410C 0%, #F97316 50%, #E11D48 125%); }
+.vc .hero .hbtn { color: #C2410C; }
+.vc .b1 { background: #FFF1E4; } .vc .b1 .ic { background: #FFE0C2; color: #C2410C; }
+.vc .b2 { background: #FDEDF1; } .vc .b2 .ic { background: #FBD3DE; color: #BE123C; }
+.vc .b3 { background: #FBF0DA; } .vc .b3 .ic { background: #F8E2AE; color: #A16207; }
+.vc .b4 { background: #EFF0FB; } .vc .b4 .ic { background: #DDE0F6; color: #4338CA; }
+.vc .p-deal { background: #DCFCE7; color: #15803D; } .vc .p-score { background: #FFEDD5; color: #C2410C; } .vc .p-warn { background: #FEF3C7; color: #A16207; }
+.vc .price { color: #EA580C; }
+.vc .btn2 { background: #EA580C; }
+.vc .bars i { background: #FED7AA; } .vc .bars i.hot { background: linear-gradient(180deg, #F97316, #E11D48); }
+
+/* D — Emerald Money: Grün→Teal, Lime-CTA */
+.vd { background: #F1F6F3; }
+.vd .logo .dot { background: linear-gradient(135deg, #059669, #0D9488); }
+.vd .tab.on { background: #D1FAE5; color: #047857; font-weight: 700; }
+.vd .hero { background: linear-gradient(115deg, #064E3B 0%, #047857 50%, #0D9488 120%); }
+.vd .hero .hbtn { background: #A7F3A0; background: #BEF264; color: #14532D; }
+.vd .stat { border-top: 4px solid; }
+.vd .b1 { border-color: #10B981; } .vd .b1 .ic { background: #D1FAE5; color: #047857; }
+.vd .b2 { border-color: #84CC16; } .vd .b2 .ic { background: #ECFCCB; color: #4D7C0F; }
+.vd .b3 { border-color: #0EA5E9; } .vd .b3 .ic { background: #E0F2FE; color: #0369A1; }
+.vd .b4 { border-color: #F59E0B; } .vd .b4 .ic { background: #FEF3C7; color: #B45309; }
+.vd .p-deal { background: #BEF264; color: #14532D; } .vd .p-score { background: #D1FAE5; color: #047857; } .vd .p-warn { background: #FEF3C7; color: #B45309; }
+.vd .price { color: #047857; }
+.vd .btn2 { background: #047857; }
+.vd .bars i { background: #BBE7D2; } .vd .bars i.hot { background: linear-gradient(180deg, #10B981, #84CC16); }
+
+/* E — Royal Night Header: dunkler App-Header, Indigo-Akzente */
+.ve { background: #F2F4FA; }
+.ve .top { background: #111633; border-bottom: none; }
+.ve .logo { color: #fff; }
+.ve .logo .dot { background: linear-gradient(135deg, #6366F1, #22D3EE); color: #111633; }
+.ve .tab { color: #9AA3D0; }
+.ve .tab.on { background: rgba(99,102,241,0.25); color: #fff; font-weight: 700; }
+.ve .hero { background: #111633; position: relative; overflow: hidden; }
+.ve .hero::after { content: ''; position: absolute; right: -60px; top: -80px; width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(99,102,241,0.55), transparent 65%); }
+.ve .hero::before { content: ''; position: absolute; right: 140px; bottom: -120px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(34,211,238,0.35), transparent 65%); }
+.ve .hero .hbtn { color: #111633; position: relative; z-index: 1; }
+.ve .stat { border-top: 4px solid; }
+.ve .b1 { border-color: #6366F1; } .ve .b1 .ic { background: #E0E7FF; color: #4338CA; }
+.ve .b2 { border-color: #22D3EE; } .ve .b2 .ic { background: #CFFAFE; color: #0E7490; }
+.ve .b3 { border-color: #10B981; } .ve .b3 .ic { background: #D1FAE5; color: #047857; }
+.ve .b4 { border-color: #F43F5E; } .ve .b4 .ic { background: #FFE4E6; color: #BE123C; }
+.ve .p-deal { background: #D1FAE5; color: #047857; } .ve .p-score { background: #E0E7FF; color: #4338CA; } .ve .p-warn { background: #FEF3C7; color: #B45309; }
+.ve .price { color: #10B981; }
+.ve .btn2 { background: #111633; }
+.ve .bars i { background: #C7D2FE; } .ve .bars i.hot { background: linear-gradient(180deg, #6366F1, #22D3EE); }
+</style>
+</head>
+<body>
+
+<div class="variant-label">V2-A — Original <small>Indigo → Violett → Pink (wie gezeigt, Referenz)</small></div>
+<section class="fp va" id="va">
+  <div class="top">
+    <div class="logo"><span class="dot">◆</span> Kleinanzeigen Analyzer</div>
+    <span class="tab on">Suche</span><span class="tab">Agenten</span><span class="tab">Pipeline</span>
+  </div>
+  <div class="content">
+    <div class="hero">
+      <div><h2>PlayStation 5 — Marktübersicht</h2><p>61 Inserate · PLZ 65428 +50 km · letzte Runde 18:36</p></div>
+      <button class="hbtn">+ Neuer Agent</button>
+    </div>
+    <div class="row">
+      <div class="stat b1"><div class="ic">€</div><div class="lbl">Ø Preis</div><div class="val">412 €</div></div>
+      <div class="stat b2"><div class="ic">◆</div><div class="lbl">Median</div><div class="val">399 €</div></div>
+      <div class="stat b3"><div class="ic">▼</div><div class="lbl">Günstigster</div><div class="val">240 €</div></div>
+      <div class="stat b4"><div class="ic">★</div><div class="lbl">Deals</div><div class="val">12</div></div>
+    </div>
+    <div class="card">
+      <div class="deal-line">
+        <div>
+          <strong>PS5 Disc Edition + 2 Controller, OVP</strong><br>
+          <span class="pill p-deal">TOP DEAL</span> <span class="pill p-score">Score 92</span> <span class="pill p-warn">Fake-Risiko 10%</span>
+          <div class="deal-meta">−35% unter Median · Rüsselsheim · komplett mit Rechnung</div>
+        </div>
+        <div class="price">260 €</div>
+      </div>
+      <div class="bars"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:100%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:38%"></i><i style="height:22%"></i><i style="height:12%"></i></div>
+      <div class="btn-row"><button class="btn2">Jetzt suchen</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="variant-label">V2-B — Ocean <small>Cyan → Tiefblau · linke Farb-Borders · kühler, ruhiger</small></div>
+<section class="fp vb" id="vb">
+  <div class="top">
+    <div class="logo"><span class="dot">◆</span> Kleinanzeigen Analyzer</div>
+    <span class="tab on">Suche</span><span class="tab">Agenten</span><span class="tab">Pipeline</span>
+  </div>
+  <div class="content">
+    <div class="hero">
+      <div><h2>PlayStation 5 — Marktübersicht</h2><p>61 Inserate · PLZ 65428 +50 km · letzte Runde 18:36</p></div>
+      <button class="hbtn">+ Neuer Agent</button>
+    </div>
+    <div class="row">
+      <div class="stat b1"><div class="ic">€</div><div class="lbl">Ø Preis</div><div class="val">412 €</div></div>
+      <div class="stat b2"><div class="ic">◆</div><div class="lbl">Median</div><div class="val">399 €</div></div>
+      <div class="stat b3"><div class="ic">▼</div><div class="lbl">Günstigster</div><div class="val">240 €</div></div>
+      <div class="stat b4"><div class="ic">★</div><div class="lbl">Deals</div><div class="val">12</div></div>
+    </div>
+    <div class="card">
+      <div class="deal-line">
+        <div>
+          <strong>PS5 Disc Edition + 2 Controller, OVP</strong><br>
+          <span class="pill p-deal">TOP DEAL</span> <span class="pill p-score">Score 92</span> <span class="pill p-warn">Fake-Risiko 10%</span>
+          <div class="deal-meta">−35% unter Median · Rüsselsheim · komplett mit Rechnung</div>
+        </div>
+        <div class="price">260 €</div>
+      </div>
+      <div class="bars"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:100%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:38%"></i><i style="height:22%"></i><i style="height:12%"></i></div>
+      <div class="btn-row"><button class="btn2">Jetzt suchen</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="variant-label">V2-C — Sunset <small>Orange → Pink · sanft getönte Karten statt weiß · warm</small></div>
+<section class="fp vc" id="vc">
+  <div class="top">
+    <div class="logo"><span class="dot">◆</span> Kleinanzeigen Analyzer</div>
+    <span class="tab on">Suche</span><span class="tab">Agenten</span><span class="tab">Pipeline</span>
+  </div>
+  <div class="content">
+    <div class="hero">
+      <div><h2>PlayStation 5 — Marktübersicht</h2><p>61 Inserate · PLZ 65428 +50 km · letzte Runde 18:36</p></div>
+      <button class="hbtn">+ Neuer Agent</button>
+    </div>
+    <div class="row">
+      <div class="stat b1"><div class="ic">€</div><div class="lbl">Ø Preis</div><div class="val">412 €</div></div>
+      <div class="stat b2"><div class="ic">◆</div><div class="lbl">Median</div><div class="val">399 €</div></div>
+      <div class="stat b3"><div class="ic">▼</div><div class="lbl">Günstigster</div><div class="val">240 €</div></div>
+      <div class="stat b4"><div class="ic">★</div><div class="lbl">Deals</div><div class="val">12</div></div>
+    </div>
+    <div class="card">
+      <div class="deal-line">
+        <div>
+          <strong>PS5 Disc Edition + 2 Controller, OVP</strong><br>
+          <span class="pill p-deal">TOP DEAL</span> <span class="pill p-score">Score 92</span> <span class="pill p-warn">Fake-Risiko 10%</span>
+          <div class="deal-meta">−35% unter Median · Rüsselsheim · komplett mit Rechnung</div>
+        </div>
+        <div class="price">260 €</div>
+      </div>
+      <div class="bars"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:100%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:38%"></i><i style="height:22%"></i><i style="height:12%"></i></div>
+      <div class="btn-row"><button class="btn2">Jetzt suchen</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="variant-label">V2-D — Emerald Money <small>Grün → Teal · Lime-CTA · „Geld sparen"-Thema</small></div>
+<section class="fp vd" id="vd">
+  <div class="top">
+    <div class="logo"><span class="dot">◆</span> Kleinanzeigen Analyzer</div>
+    <span class="tab on">Suche</span><span class="tab">Agenten</span><span class="tab">Pipeline</span>
+  </div>
+  <div class="content">
+    <div class="hero">
+      <div><h2>PlayStation 5 — Marktübersicht</h2><p>61 Inserate · PLZ 65428 +50 km · letzte Runde 18:36</p></div>
+      <button class="hbtn">+ Neuer Agent</button>
+    </div>
+    <div class="row">
+      <div class="stat b1"><div class="ic">€</div><div class="lbl">Ø Preis</div><div class="val">412 €</div></div>
+      <div class="stat b2"><div class="ic">◆</div><div class="lbl">Median</div><div class="val">399 €</div></div>
+      <div class="stat b3"><div class="ic">▼</div><div class="lbl">Günstigster</div><div class="val">240 €</div></div>
+      <div class="stat b4"><div class="ic">★</div><div class="lbl">Deals</div><div class="val">12</div></div>
+    </div>
+    <div class="card">
+      <div class="deal-line">
+        <div>
+          <strong>PS5 Disc Edition + 2 Controller, OVP</strong><br>
+          <span class="pill p-deal">TOP DEAL</span> <span class="pill p-score">Score 92</span> <span class="pill p-warn">Fake-Risiko 10%</span>
+          <div class="deal-meta">−35% unter Median · Rüsselsheim · komplett mit Rechnung</div>
+        </div>
+        <div class="price">260 €</div>
+      </div>
+      <div class="bars"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:100%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:38%"></i><i style="height:22%"></i><i style="height:12%"></i></div>
+      <div class="btn-row"><button class="btn2">Jetzt suchen</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="variant-label">V2-E — Royal Night <small>dunkler Header + Hero mit Glow · heller Inhalt · Indigo/Cyan</small></div>
+<section class="fp ve" id="ve">
+  <div class="top">
+    <div class="logo"><span class="dot">◆</span> Kleinanzeigen Analyzer</div>
+    <span class="tab on">Suche</span><span class="tab">Agenten</span><span class="tab">Pipeline</span>
+  </div>
+  <div class="content">
+    <div class="hero">
+      <div style="position:relative;z-index:1"><h2>PlayStation 5 — Marktübersicht</h2><p>61 Inserate · PLZ 65428 +50 km · letzte Runde 18:36</p></div>
+      <button class="hbtn">+ Neuer Agent</button>
+    </div>
+    <div class="row">
+      <div class="stat b1"><div class="ic">€</div><div class="lbl">Ø Preis</div><div class="val">412 €</div></div>
+      <div class="stat b2"><div class="ic">◆</div><div class="lbl">Median</div><div class="val">399 €</div></div>
+      <div class="stat b3"><div class="ic">▼</div><div class="lbl">Günstigster</div><div class="val">240 €</div></div>
+      <div class="stat b4"><div class="ic">★</div><div class="lbl">Deals</div><div class="val">12</div></div>
+    </div>
+    <div class="card">
+      <div class="deal-line">
+        <div>
+          <strong>PS5 Disc Edition + 2 Controller, OVP</strong><br>
+          <span class="pill p-deal">TOP DEAL</span> <span class="pill p-score">Score 92</span> <span class="pill p-warn">Fake-Risiko 10%</span>
+          <div class="deal-meta">−35% unter Median · Rüsselsheim · komplett mit Rechnung</div>
+        </div>
+        <div class="price">260 €</div>
+      </div>
+      <div class="bars"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:100%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:38%"></i><i style="height:22%"></i><i style="height:12%"></i></div>
+      <div class="btn-row"><button class="btn2">Jetzt suchen</button></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

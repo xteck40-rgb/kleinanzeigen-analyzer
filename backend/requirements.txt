@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+playwright
+aiosqlite
+pandas
+numpy
+python-multipart
+claude-agent-sdk
+httpx
