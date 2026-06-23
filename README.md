@@ -4,11 +4,33 @@ Scrape, analyse und visualisiere Inserate von kleinanzeigen.de — finde Deals, 
 
 ---
 
+## ⚡ Schnellstart (Windows) — für Freunde zum Kopieren
+
+```powershell
+# 1. Projekt herunterladen
+git clone https://github.com/xteck40-rgb/kleinanzeigen-analyzer.git
+cd kleinanzeigen-analyzer
+
+# 2. Einmalige Einrichtung (Python-Pakete, Browser, Frontend-Build)
+.\setup.ps1
+
+# 3. Starten
+.\start.ps1
+```
+
+Dann **http://localhost:8000** im Browser öffnen.
+
+> Kein Git? Stattdessen oben rechts auf GitHub **Code → Download ZIP**, entpacken, dann `setup.ps1` / `start.ps1` ausführen.
+>
+> Den eigenen **OpenRouter API-Key** (https://openrouter.ai/keys) trägt jeder selbst in der App unter *Einstellungen* ein — er wird **nicht** mitgeliefert.
+
+---
+
 ## ⚙️ Voraussetzungen
 
-- **Python 3.10+** → https://www.python.org/downloads/
+- **Python 3.11** → https://www.python.org/downloads/release/python-3119/ (beim Installieren *„Add python.exe to PATH"* anhaken)
 - **Node.js 18+** → https://nodejs.org/
-- **VS Code** (empfohlen)
+- **Git** (optional) → https://git-scm.com/download/win
 
 ---
 
