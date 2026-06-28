@@ -810,6 +810,7 @@ async def scrape_kleinanzeigen(
                 )
 
         try:
+            seen_urls: set = set()  # dedup across pages + detect KA clamping past last page
             for page_num in range(1, max_pages + 1):
                 if progress_callback:
                     progress_callback(int((page_num - 1) / max_pages * 80))
@@ -845,14 +846,24 @@ async def scrape_kleinanzeigen(
                         cookies_accepted = True
 
                     items = await page.query_selector_all(ITEM_SEL)
+                    # Anti-bot can serve a near-empty page when scrapes run back-to-back.
+                    # One reload retry before giving up — a single bad page must not
+                    # tank the whole round.
+                    if not items:
+                        logger.warning(f"No items on page {page_num} — reloading once")
+                        try:
+                            await page.reload(wait_until="domcontentloaded", timeout=40_000)
+                            await page.wait_for_selector(ITEM_SEL, timeout=8_000)
+                        except Exception:
+                            pass
+                        items = await page.query_selector_all(ITEM_SEL)
                     logger.info(f"Page {page_num}: {len(items)} listing nodes on {page.url}")
                     if not items:
-                        # Dump short HTML diagnostic so we know what kleinanzeigen returned.
                         try:
                             head = (await page.content())[:800]
                         except Exception:
                             head = "<failed>"
-                        logger.warning(f"No items on page {page_num} — HTML head: {head!r}")
+                        logger.warning(f"Still no items on page {page_num} — HTML head: {head!r}")
                         break
 
                     page_results = []
@@ -861,15 +872,19 @@ async def scrape_kleinanzeigen(
                         if listing:
                             page_results.append(listing)
 
-                    results.extend(page_results)
-                    logger.info(f"Page {page_num}: {len(page_results)} listings scraped")
+                    # Dedup across pages by URL. If a page adds NOTHING new, Kleinanzeigen
+                    # has clamped a too-high page number back to the last real page —
+                    # that's our reliable "no more pages" signal (KA's markup has no
+                    # stable "next" button class to rely on).
+                    new_results = [l for l in page_results
+                                   if l.get("url") and l["url"] not in seen_urls]
+                    for l in new_results:
+                        seen_urls.add(l["url"])
+                    results.extend(new_results)
+                    logger.info(f"Page {page_num}: {len(page_results)} nodes, {len(new_results)} new listings")
 
-                    # Next page?
-                    next_btn = page.locator(
-                        "a.pagination-next, [data-testid='pagination-next'], a[aria-label='Nächste Seite']"
-                    )
-                    if await next_btn.count() == 0:
-                        logger.info("No next page — done")
+                    if page_num > 1 and not new_results:
+                        logger.info("Page repeats earlier results — last page reached")
                         break
 
                 except Exception as exc:
